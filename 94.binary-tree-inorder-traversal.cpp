@@ -19,6 +19,7 @@
 class Solution
 {
 public:
+    // 二叉树迭代遍历
     // 问题：无法同时解决访问节点（遍历节点）和处理节点（将元素放进结果集）不一致的情况。
     vector<int> inorderTraversal(TreeNode *root)
     {
@@ -31,11 +32,11 @@ public:
             TreeNode *node = st.top(); // 中间节点让出位置
             if (node != NULL)
             {
-                st.pop();
+                st.pop();// 当前中间节点先出栈，先处理左右孩子
                 if (node->right)
                     st.push(node->right); // 放入右节点
                 st.push(node);            // 再次放入中间节点
-                st.push(NULL);            // 中间节点访问过，但还没没有被处理
+                st.push(NULL);            // 标记，中间节点访问过，但还没没有被处理
                 if (node->left)
                     st.push(node->left); // 放入左节点
             }
@@ -51,7 +52,7 @@ public:
         return result;
     }
 
-    // 二叉树遍历
+    // 二叉树递归中序遍历
     /*
     void traversal(TreeNode *cur, vector<int> &vec)
     {
